@@ -29,8 +29,5 @@ composer install
 // Copy .env
 cp .env.example .env
 
-// Generate key
-php artisan key:generate
-
 // Run project
 php artisan serve
