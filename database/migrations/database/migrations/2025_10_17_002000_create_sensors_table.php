@@ -11,14 +11,11 @@ return new class extends Migration
         Schema::create('sensors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code');
+            $table->string('code')->unique();
             $table->boolean('status')->default(true);
             $table->unsignedBigInteger('id_station');
-            $table->timestamp('deleted_at')->nullable();
-            $table->timestamps();
-
-         
             $table->foreign('id_station')->references('id')->on('stations')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

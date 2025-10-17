@@ -14,12 +14,17 @@ return new class extends Migration
             $table->string('code');
             $table->string('abbrev');
             $table->boolean('status')->default(true);
-            $table->unsignedBigInteger('id_department');
-            $table->timestamp('deleted_at')->nullable();
-            $table->timestamps();
 
-            
-             $table->foreign('id_department')->references('id')->on('departments')->onDelete('cascade');
+            // Relación con departments
+            $table->unsignedBigInteger('id_department');
+            $table->foreign('id_department')
+                  ->references('id')
+                  ->on('departments')
+                  ->onDelete('cascade');
+
+            // Soft delete y timestamps
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
